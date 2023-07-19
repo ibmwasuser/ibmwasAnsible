@@ -1,0 +1,9 @@
+---
+- name: Check Linux Versions
+  hosts: your_server_group
+  gather_facts: yes
+
+  tasks:
+    - name: Display Linux Version
+      debug:
+        var: ansible_distribution_version

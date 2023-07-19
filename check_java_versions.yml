@@ -1,0 +1,13 @@
+---
+- name: Check Java Versions
+  hosts: your_server_group
+  gather_facts: yes
+
+  tasks:
+    - name: Check Java Version
+      shell: java -version 2>&1 | head -n 1
+      register: java_version_output
+
+    - name: Display Java Version
+      debug:
+        var: java_version_output.stdout_lines
