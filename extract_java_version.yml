@@ -1,0 +1,14 @@
+---
+- name: Extract Java Version
+  hosts: your_server_group
+  gather_facts: yes
+
+  tasks:
+    - name: Get Java Version
+      shell: "ps -ef | grep '[j]ava' | awk '{print \$NF}' | xargs -r readlink -f | xargs -r java -version 2>&1"
+      register: java_version_output
+      changed_when: false
+
+    - name: Display Java Version
+      debug:
+        msg: "{{ java_version_output.stdout_lines }}"
